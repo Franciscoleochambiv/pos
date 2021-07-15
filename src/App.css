@@ -1,0 +1,503 @@
+.header, .menu, .content {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100%;
+  flex-direction: column;
+  display: flex;
+  min-width:50%;
+  
+
+  
+  
+}
+
+html, #root, body {
+  height: 100%;
+  margin: 30px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+
+
+
+.app-body {
+  display: flex;
+  flex: 1;
+
+
+
+  
+}
+
+.nav{
+  position: relative;
+  flex: 1;
+
+}
+
+
+.content {
+  position: relative;
+  flex: 1;
+}
+
+
+.circular{
+  position:absolute;  
+  left:0; right:0;
+  top:0; bottom:0;
+  margin:auto;
+}
+
+
+.contenido
+{
+  background-color: "#FAFAFC";
+  width: 20%;
+ 
+ 
+  
+
+}
+
+
+
+.left-part1 {
+  display: flex;
+  flex: 1;
+  width:20%;
+  align-items: center;
+}
+
+.left-part2 {
+  display: flex;
+  flex: 1;
+  width:20%;
+  
+}
+
+.botones {
+  display: flex;
+  flex: 1;
+  
+  background-Color: #fafbfa;
+  margin-Left: 50; 
+  width: 45%;
+  margin-Bottom: 5; 
+  
+  
+}
+.buscar{
+  display: flex;
+  flex: 1;
+  
+
+}
+
+
+.right-part1 {
+  display: flex;
+  width:20%;
+  align-items: center;
+  justify-content: flex-end;
+
+}
+
+.seleccion {
+  min-width: 200px;  
+  margin-Left: 20;
+}
+
+.texto{
+  margin-Left: 30; 
+  width: 45%;
+  margin-Bottom: 15; 
+
+}
+
+
+.rprice{
+  display: flex;
+  flex-Direction:column;
+  align-Items: center;
+
+}
+
+
+.pagina{
+  display: flex;
+  justify-Content: center;
+  align-Items: center;
+}
+
+
+.footer{
+  display: flex;
+  justify-Content: center;
+  align-Items: center;
+  
+  
+  
+
+}
+.card{
+  width: 550; 
+  height: 190; 
+  margin: 10;
+  display: inline-block;
+}
+
+.dialog{
+    max-Height: auto;
+    padding: 5;
+    overflow:auto;
+    width: auto;
+    max-Width: auto;
+    height: auto;
+    
+    
+}
+
+
+
+
+
+@media only screen 
+and (min-device-width : 360px) 
+and (max-device-width : 480px)
+
+
+{
+  .app-body {
+    flex-direction: row;
+   
+    
+   
+  }
+  .contenido{
+    flex-direction: row;
+    display:none;
+  }
+  .nav{
+    flex-direction: row;
+  }
+  .left-part1{
+    flex-direction: row;
+  }
+  .left-part2{
+    flex-direction: column;
+    
+    
+
+   }
+
+   .botones{
+        
+    flex-direction: row;
+    display:none;
+
+   }
+
+
+   .texto{
+    flex-direction: row;
+   }
+   .rprice{
+    flex-direction: row;
+
+    
+   }
+   .pagina{
+    flex-direction: row;
+    justify-Content: left;
+    align-Items: left;
+    
+
+    
+   }
+   .buscar{
+    flex-direction: row;
+    display:none;
+
+   }
+   .footer{
+    flex-direction: row;
+    
+
+   }
+
+
+  
+
+  
+
+
+   .dialog{
+   
+    justify-Content: center;
+    width:100% ;
+    max-Width: 100%;
+    height: 10%;
+    display: inline-block;
+    min-height: 100%;
+  flex-direction: column;
+  display: flex;
+  min-width:50%;
+    
+    
+
+
+   }
+
+
+  
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media screen and (max-width: 600px){
+  .app-body {
+    flex-direction: row;
+    
+  }
+  .contenido{
+    flex-direction: row;
+    display:none;
+  }
+  .nav{
+    flex-direction: row;
+  }
+  .left-part1{
+    flex-direction: row;
+  }
+
+
+
+  .left-part2{
+    flex-direction: column;
+    
+    display:none;
+
+   }
+   
+   body {
+    font-family: Helvetica, Arial;
+    margin: 3px;
+    padding-top: 90px;
+    
+    
+  
+  }
+
+
+
+
+
+   .botones{
+        
+    flex-direction: row;
+    display:none;
+
+   }
+
+
+   .texto{
+    flex-direction: row;
+   }
+   .rprice{
+    flex-direction: row;
+
+    
+   }
+   .pagina{
+    flex-direction: row;
+    justify-Content: left;
+    align-Items: left;
+    
+
+    
+   }
+   .buscar{
+    flex-direction: row;
+    display:none;
+
+   }
+   .footer{
+    flex-direction: row;
+    
+
+   }
+   
+   .bajaboton{
+    flex-direction: column;
+    
+     
+  }
+
+  
+}
+
+
+
+
+
+@media screen and (max-width: 991px){
+
+  .buscaoculta{
+    display:none;
+  }
+ 
+ 
+  .columns{
+      height: 400px;
+      width: 230px;
+      background-color:#005cbf;
+      overflow-y:scroll;
+      overflow-x:scroll;
+  }
+}
+
+
+@media screen and (min-width: 992px){
+
+  .bajaboton{
+   
+    display:none;
+     
+  }
+  .columns{
+      -moz-column-count:4; 
+      -webkit-column-count:4; 
+      column-count:4;
+      width: 800px;
+      height:270px;
+      background-color:#005cbf;
+      overflow-y:scroll;
+      overflow-x:scroll;
+      
+  }
+}
+
+.prod-container{
+display: grid;
+grid: 'search-container chat-title' 71px 'conversation-list chat-message-list' 1fr 'new-message-container chat-form' 78px / 275px 1fr;
+min-width: 100%;
+max-width: 100%;
+max-height: 100%;
+width: 100%;
+height:55vh;
+background: white;
+border-radius: 10px;
+overflow-y: scroll;
+overflow-x: scroll;
+}
+
+.prod-container1{
+  display: grid;
+  grid: 'search-container chat-title' 71px 'conversation-list chat-message-list' 1fr 'new-message-container chat-form' 178px / 275px 1fr;
+  min-width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: 100%;
+  height:25vh;
+  background: white;
+  border-radius: 10px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+  }
+  
+
+
+.cardnuevo{
+  color: #FFF;
+  width: 100%;
+  border: 0;
+  display: flex;
+  position: relative;
+  font-size: .875rem;
+  min-width: 0;
+  word-wrap: break-word;
+  background: #FFF;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+  margin-top: 30px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  flex-direction: column;
+  border: "0",
+    
+
+}
+.colorfuente{
+  color: #FFFFFF;
+margin-top: 0px;
+min-height: auto;
+font-family: 'Roboto', 'Helvetica', 'Arial', sans-serif;
+font-weight: 300;
+margin-bottom: 3px;
+text-decoration: none;
+}
+
+
+
+.cabeceracolorpri{
+  background: linear-gradient(60deg,#26c6da, #00acc1);
+  
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(30, 135, 167, 0.4);
+  color: white;
+}
+
+.cabeceracolor{
+  background: linear-gradient(60deg, #528bdf, #0abaf0);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(30, 135, 167, 0.4);
+  color: white;
+}
+
+.cabeceracolornaranja{
+  background: linear-gradient(60deg, #e28d8d, #f50057);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(226, 53, 53, 0.4);
+  color: white;
+}
+
+.cabeceracolorverde{
+  background: linear-gradient(60deg, #8dbde2, #007cba);
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(43, 196, 223, 0.4);
+  color: white;
+}
+
+
+;
+
+.boton-container{
+  width: 33.33333333%;
+  position: relative;
+  min-height: 1px;
+  padding: 0 5px;
+  float: left;
+  
+
+  }
+
+.chat-message-list {
+  grid-area: chat-message-list;
+  display: flex;
+  flex-direction: column-reverse;
+  padding: 0 20px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+

@@ -1,0 +1,33 @@
+.linea
+{
+
+display: inline;
+} 
+
+.ul {
+    width:750px;
+    margin-bottom:10px;
+    overflow:hidden;
+    }
+    .li {
+    float:left;
+    display:inline;
+    }
+
+   .react-paginate ul {
+        
+        padding-left: 15px;
+        padding-right: 15px;
+        width:750px;
+       
+      }
+      
+  .react-paginate li {
+        display: inline-block;
+        padding-left: 15px;
+        padding-right: 15px;
+       
+        box-shadow: 0 4px 20px 0 rgba(0, 0, 0,.14), 0 7px 10px -5px rgba(156, 39, 176,.4);
+        background-color: #FFF;
+        text-align:center;
+      }

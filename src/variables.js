@@ -9,13 +9,13 @@ export const ENDPOINT2 = "http://157.245.124.102:3500";
 export const ENDPOINT3 = "https://localhost:3010";
 
 
-export const RucEmpresa='10309611131';
+export const RucEmpresa='10444864589';
 export const NameEmpresa='FRANCISCO LEO CHAMBI VILCA';
 export const Nproveedor='sfsystemblog.herokuapp.com';
 export const Nprovincia='AREQUIPA';
 export const Nciudad='AREQUIPA';
-export const Ndistrito='Cerro Colorado';
-export const Ndireccion='AV GARCILAZO DE LA VEGA 806 URB M.CASTILLA';
+export const Ndistrito='MIRAFLORES';
+export const Ndireccion='PUEBLO JOVEN JUAN XXIII MZNA O LTE 4';
 
 /*
  title :"10309611131-0"+tipo+"-"+inilet+"008"+"-"+unumero,

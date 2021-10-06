@@ -10,7 +10,7 @@ export const ENDPOINT3 = "https://localhost:3010";
 
 
 export const RucEmpresa='10444864589';
-export const NameEmpresa='FRANCISCO LEO CHAMBI VILCA';
+export const NameEmpresa='CHAQUILLA SONCCO VIANEY"';
 export const Nproveedor='sfsystemblog.herokuapp.com';
 export const Nprovincia='AREQUIPA';
 export const Nciudad='AREQUIPA';

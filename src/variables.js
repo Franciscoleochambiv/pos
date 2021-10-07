@@ -17,6 +17,9 @@ export const Nciudad='AREQUIPA';
 export const Ndistrito='MIRAFLORES';
 export const Ndireccion='PUEBLO JOVEN JUAN XXIII MZNA O LTE 4';
 
+export const UPLOADIMA="http://157.245.124.102:7002/uploadpos/";
+
+
 /*
  title :"10309611131-0"+tipo+"-"+inilet+"008"+"-"+unumero,
                                           content:"za",

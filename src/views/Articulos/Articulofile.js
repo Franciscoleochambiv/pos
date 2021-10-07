@@ -28,6 +28,9 @@ import NumberFormat from "react-number-format";
 import axios from "axios";
 import ViewArticuloHooks from './ViewArticuloHooks';
 
+
+import { unidad, UPLOADIMA} from "../../variables";
+
 const styles = {
   cardCategoryWhite: {
     color: "rgba(255,255,255,.62)",
@@ -81,7 +84,8 @@ function NumberFormatCustom(props) {
 
 const Articulo = () => {
   const classes = useStyles();
-  const ruta="http://adryan2.sytes.net:7002/upload/";
+  const ruta=UPLOADIMA;
+  //"http://adryan2.sytes.net:7002/upload/";
 
 
 
@@ -90,7 +94,7 @@ const Articulo = () => {
 //let unidad="https://localhost";
 //let unidad="https://adryan2.sytes.net:5000";
 //let unidad="https://apisfsystem.herokuapp.com";
-let unidad="https://adryan2.sytes.net:7001";
+//let unidad="https://adryan2.sytes.net:7001";
 
 
      const dispatch = useDispatch()
@@ -162,7 +166,7 @@ let unidad="https://adryan2.sytes.net:7001";
           
         
           setFile("")  
-          setPathImage("http://adryan2.sytes.net:7002/upload.png")     
+          setPathImage("http://157.245.124.102:7002/uploadpos/upload.png")     
 
     }
 

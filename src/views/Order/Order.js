@@ -743,7 +743,7 @@ const Order = () => {
               .then(res =>
                 //	  history.push("/pdf/"),
                 //|  alert("todo bien"),
-                history.push("/pdf/" + "10309611131-0" + tipo + "-" + inilet + serie + "-" + unumero + ".pdf"),
+                history.push("/pdf/" + RucEmpresa+"-0" + tipo + "-" + inilet + serie + "-" + unumero + ".pdf"),
                 dispatch(deleteCart([])),
                 history.push("/pos/pos")
 

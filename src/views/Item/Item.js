@@ -108,7 +108,7 @@ class ConnectedItem extends Component {
                                   onClick={e => {
                                     e.stopPropagation();
                                     this.props.dispatch(
-                                      addItemInCart({ ...this.props.item, quantity: 1 })
+                                      addItemInCart({ ...this.props.item, quantity: 0 })
                                     );
                                   }}
                                   color="primary"

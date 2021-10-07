@@ -76,8 +76,8 @@ class ConnectedCartDialog extends Component {
                                 <Table>
                                 <TableRow>
                                         <TableCell>Item Nombre</TableCell>
-                                        <TableCell>Precio</TableCell>
                                         <TableCell>Cantidad</TableCell>
+                                        <TableCell>Precio</TableCell>
                                         <TableCell>Accion</TableCell>
                                 </TableRow>             
                                   </Table>  

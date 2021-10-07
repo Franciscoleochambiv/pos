@@ -87,38 +87,8 @@ const CartRow = props => {
 		} 
 
 
-      <TableCell>
 
-
-    
-
-
-      <TextField
-          id="preciot" 
-          defaultValue={item.precio.toFixed(2)}           
-          inputProps={{ 'aria-label': 'precio' }} 
-          style={{ width: 50 }}
-          InputProps={{
-            inputComponent: NumberFormatCustom
-          }}
-          onChange={e => {
-            let precio = parseFloat(e.target.value);
-            if (precio < 0) return;
-            props.dispatch(
-              updateCartItemPri({
-                id: item.id,
-                precio
-              })
-            );
-          }}
-
-          />       
-        
-        </TableCell>
-
-
-
-      <TableCell>
+<TableCell>
         <TextField
          id="cantidadt" 
          defaultValue={item.quantity.toFixed(2)}           
@@ -148,6 +118,40 @@ const CartRow = props => {
           
         />
       </TableCell>
+
+
+
+
+
+
+
+      <TableCell>
+
+      <TextField
+          id="preciot" 
+          defaultValue={item.precio.toFixed(2)}           
+          inputProps={{ 'aria-label': 'precio' }} 
+          style={{ width: 50 }}
+          InputProps={{
+            inputComponent: NumberFormatCustom
+          }}
+          onChange={e => {
+            let precio = parseFloat(e.target.value);
+            if (precio < 0) return;
+            props.dispatch(
+              updateCartItemPri({
+                id: item.id,
+                precio
+              })
+            );
+          }}
+
+          />       
+        
+        </TableCell>
+
+
+
 
 
       

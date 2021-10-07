@@ -34,7 +34,10 @@ class ConnectedItem extends Component {
       >
          <CardActionArea
           onClick={() => {
-            this.props.history.push("/details/" + this.props.item.id);
+            this.props.dispatch(
+              addItemInCart({ ...this.props.item, quantity: 1 })
+            );
+            //this.props.history.push("/details/" + this.props.item.id);
            }}
         >
         <div >

@@ -66,23 +66,18 @@ class ConnectedCartDialog extends Component {
 
 
 
-                      <div className="cardnuevo cabeceracolorpri " style={{marginTop:"1px"}}>
-                            
-                                <Table>
-                                <TableRow>
-                                        <TableCell>Item Nombre</TableCell>
-                                        <TableCell>Precio</TableCell>
-                                        <TableCell>Cantidad</TableCell>
-                                        <TableCell>Accion</TableCell>
-                                </TableRow>             
-                                  </Table>  
-                          
-                      </div>
+                     
       
                       <div  className="prod-container  cardnuevo   " style={{marginTop:"1px"}}>
                         
                       
-                        <Table>              
+                        <Table>    
+                         <TableRow style={{  background: "linear-gradient(60deg,#26c6da, #00acc1)",color: "white", marginRight: 10 }}>
+                                        <TableCell>Item Nombre</TableCell>
+                                        <TableCell>Cantidad</TableCell>
+                                        <TableCell>Precio</TableCell>
+                                        <TableCell>Accion</TableCell>
+                                </TableRow>                 
                           <TableBody>
                             {this.props.items.map((item, index) => {
                               return <CartRow item={item} key={item.id} {...this.props} />;

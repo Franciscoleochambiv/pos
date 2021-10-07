@@ -32,7 +32,7 @@ import { useHistory } from "react-router-dom";
 
 import { fetch_ventaseriesql } from "../../actions/ventaserieActions";
 import {NumerosaLetras,zfill,mathRound2} from "../../funciones1";
-import { unidad } from "../../variables";
+import { unidad,RucEmpresa } from "../../variables";
 
 
 
@@ -281,15 +281,15 @@ const ViewVentaserieHooks = () => {
                                <TableCell className={classes.tableCell}>
                                   <Button type="button"   color="danger" style={{padding:"4px 30px"}}  onClick={() => {
                                    let inilet=(l1.TD_Descripcion).substring(0,1)
-                                    history.push("/archivos/"+"10309611131-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".pdf")                                                  
+                                    history.push("/archivos/"+RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".pdf")                                                  
                                     }}  >PDF</Button>   
                                     <Button type="button" color="success" style={{padding:"4px 30px"}} onClick={() => {
                                    let inilet=(l1.TD_Descripcion).substring(0,1)
-                                    history.push("/archivos/"+"10309611131-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".xml")                                                  
+                                    history.push("/archivos/"+RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".xml")                                                  
                                     }}  >XML</Button>  
                                     <Button type="button"  color="info"  style={{padding:"4px 30px"}} onClick={() => {
                                    let inilet=(l1.TD_Descripcion).substring(0,1)
-                                    history.push("/archivos/"+"R-10309611131-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".zip")                                                  
+                                    history.push("/archivos/"+"R-"+RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".zip")                                                  
                                     }}  >CDR</Button>    
                                    
                               </TableCell>

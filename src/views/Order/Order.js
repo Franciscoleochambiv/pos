@@ -800,8 +800,8 @@ const Order = () => {
                   return (
                     <TableRow key={item.id}>
                       <TableCell>{item.descripcion}</TableCell>
-                      <TableCell>{item.precio}</TableCell>
                       <TableCell>{item.quantity}</TableCell>
+                      <TableCell>{item.precio}</TableCell>
                       <TableCell>{item.quantity * item.precio}</TableCell>
                     </TableRow>
                   );

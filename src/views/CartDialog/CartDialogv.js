@@ -80,6 +80,7 @@ class ConnectedCartDialog extends Component {
                                 </TableRow>                 
                           <TableBody>
                             {this.props.items.map((item, index) => {
+                             //  console.log(this.props.items)
                               return <CartRow item={item} key={item.id} {...this.props} />;
                             })}
                           </TableBody>

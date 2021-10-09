@@ -32,8 +32,8 @@ import { useHistory } from "react-router-dom";
 
 import { fetch_ventaseriesql } from "../../actions/ventaserieActions";
 import {NumerosaLetras,zfill,mathRound2} from "../../funciones1";
-import { unidad,RucEmpresa } from "../../variables";
-
+import { unidad,RucEmpresa,ENDPOINT2,NameEmpresa,Nproveedor,Nprovincia,Nciudad,Ndistrito,Ndireccion} from "../../variables";
+import axios from 'axios';
 
 
     const useStyles = makeStyles((theme) => ({
@@ -164,6 +164,79 @@ const ViewVentaserieHooks = () => {
             
            
     },[dispatch])
+    
+
+    const reenvio =(archivotmp)=>{
+      alert(archivotmp)
+
+          
+      axios.post(ENDPOINT2 + '/api/notes/reenvio', {
+        archivo: archivotmp
+        
+        
+        
+
+      })
+        .then(res =>
+          //	  history.push("/pdf/"),
+          //|  alert("todo bien"),
+           alert("Reenvio Concluido")
+
+        )
+        .catch(err =>
+          console.log(err)
+        )
+
+    }
+
+
+
+     const comprueba =(ruc,tipo,serie,numero,numeroidr,fecha,importe)=>{
+      let tidrecep="";
+      let nserie="";
+      
+
+      if (tipo==="03"){
+        tidrecep="0";
+        nserie="B"+zfill(serie,3);
+
+      }
+
+      else{
+        tidrecep="6";
+        nserie="F"+zfill(serie,3);
+        
+
+
+      }
+    //  alert(archivotmp)
+
+          
+      axios.post(ENDPOINT2 + '/api/notes/comprueba', {
+        rucEmisor:ruc,
+        tipoCDP:tipo,
+        serieCDP:nserie,
+        numeroCDP:numero,
+        tipoDocIdReceptor:tidrecep,
+        numeroDocIdReceptor:numeroidr,
+        fechaEmision:fecha,
+        importeTotal:mathRound2(importe,2),                    
+
+      })
+        .then(res =>
+          //return(true)
+          console.log(res.data)
+
+
+
+        )
+        .catch(err =>
+          console.log(err)
+        )
+
+    }
+
+
 
 
   
@@ -291,8 +364,49 @@ const ViewVentaserieHooks = () => {
                                    let inilet=(l1.TD_Descripcion).substring(0,1)
                                     history.push("/archivos/"+"R-"+RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".zip")                                                  
                                     }}  >CDR</Button>    
+
+                                    
                                    
                               </TableCell>
+                                 <TableCell className={classes.tableCell}>
+
+                                 
+                                 {
+                                 comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total)
+                                  &&
+
+                                      <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
+                                        let inilet=(l1.TD_Descripcion).substring(0,1)
+                                        //10444864589-03-B001-8.xml
+
+                                      }}  >Comprobado</Button>                                   
+
+                                 ||
+                                  <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
+                                  let inilet=(l1.TD_Descripcion).substring(0,1)
+                                  //10444864589-03-B001-8.xml
+
+                                
+
+                                  reenvio(RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".zip")
+                                   
+
+
+
+
+                                 }}  >Reenvio</Button>                                   
+
+
+                              
+                                }
+                             
+                              
+
+                             
+                                 
+
+                              </TableCell>  
+
                               <TableCell className={classes.tableCell}>{l1.DVC_Serie+"-"+l1.DVC_Numero}</TableCell>        
                               
                       

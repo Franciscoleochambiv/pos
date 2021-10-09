@@ -27,9 +27,43 @@ const CartRow = props => {
   console.log(item)
 
  let estado=false;
- if (item.codigo==="777") {
+ if (item.codigo==="771") {
      estado=true;
  }
+ if (item.codigo==="772") {
+  estado=true;
+}
+if (item.codigo==="773") {
+  estado=true;
+}
+if (item.codigo==="774") {
+  estado=true;
+}
+if (item.codigo==="775") {
+  estado=true;
+}
+if (item.codigo==="776") {
+  estado=true;
+}
+if (item.codigo==="777") {
+  estado=true;
+}
+if (item.codigo==="778") {
+  estado=true;
+}
+if (item.codigo==="779") {
+  estado=true;
+}
+if (item.codigo==="780") {
+  estado=true;
+}
+
+
+
+
+
+
+
 
 
 

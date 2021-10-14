@@ -8,9 +8,21 @@ export  const  unidad2="http://157.245.124.102:7002/backenweb/";
 export  const  unidaddocker="http://adryan3.sytes.net:5008";
  
 export const ENDPOINT = "https://apichat200.herokuapp.com";
+
+
+
 export const ENDPOINT1 = "http://157.245.124.102:7001";
 
+
+//export const ENDPOINT1 = "http://localhost:7001";
+
+
+
 export const ENDPOINT2 = "http://157.245.124.102:3500";
+
+
+//export const ENDPOINT2 = "http://localhost:3500";
+
 export const ENDPOINT3 = "https://localhost:3010";
 
 

@@ -32,7 +32,7 @@ import { useHistory } from "react-router-dom";
 
 import { fetch_ventaseriesql } from "../../actions/ventaserieActions";
 import {NumerosaLetras,zfill,mathRound2} from "../../funciones1";
-import { unidad,RucEmpresa,ENDPOINT2,NameEmpresa,Nproveedor,Nprovincia,Nciudad,Ndistrito,Ndireccion} from "../../variables";
+import { unidad,RucEmpresa,ENDPOINT1,ENDPOINT2,NameEmpresa,Nproveedor,Nprovincia,Nciudad,Ndistrito,Ndireccion} from "../../variables";
 import axios from 'axios';
 
 
@@ -107,6 +107,8 @@ import axios from 'axios';
       
       const classes = useStyles;
 
+
+
 function NumberFormatCustom(props) {
   const { inputRef, onChange, ...other } = props;
 
@@ -127,6 +129,8 @@ function NumberFormatCustom(props) {
     />
   );
 }
+
+
     
 const ViewVentaserieHooks = () => {  
   let  history = useHistory();
@@ -150,6 +154,7 @@ const ViewVentaserieHooks = () => {
     const [todosPerPage, settodosPerPage] = useState(5)
    // const [selectedPage, setselectedPage] = useState(1)
     const [isOpen, setisOpen] = useState(false)
+    const [isComp, setisComp] = useState(false)
     const [ file,setFile ]= useState("");
     
    // const [ pathImage,setPathImage ]= useState(ruta+"upload.png");
@@ -167,7 +172,7 @@ const ViewVentaserieHooks = () => {
     
 
     const reenvio =(archivotmp)=>{
-      alert(archivotmp)
+      //alert(archivotmp)
 
           
       axios.post(ENDPOINT2 + '/api/notes/reenvio', {
@@ -189,9 +194,125 @@ const ViewVentaserieHooks = () => {
 
     }
 
+    const anula=(ruc,tipo,serie,numero,fecha,total,razonemisor,DVC_ID)=>{
+      //alert(tipo)
+      let nserie=""
+      let nuevafechae=fecha.split('/').reverse().join('-');
+
+      alert(nuevafechae)
+      //let nuevafechae1=nuevafechae.split('-');
+
+      //"Nrodocu":"RA-20211010-3",
+      //"archivosinfirma":"10444864589-RA-20211010-3SF.xml",     
 
 
-     const comprueba =(ruc,tipo,serie,numero,numeroidr,fecha,importe)=>{
+      if (tipo==="03"){        
+        nserie="B"+zfill(serie,3);   
+        alert("Procedimiento en Contruccion")     
+
+      }
+
+      else{        
+        nserie="F"+zfill(serie,3);
+        //alert(fecha)
+        //llamaer al numero de resumen  api pos
+        axios.get(ENDPOINT1 + '/api/shoping1/resbolanu')
+        .then(res =>
+          {
+           let cuenta=res.data[0].id+1;
+           
+           let nfecha=res.data[0].fech;
+           let nfechajunto=nfecha.replace(/-/g,"")
+           let nrodocu1="RA-"+nfechajunto+"-"+cuenta;
+           let narchivo=ruc+"-RA-"+nfechajunto+"-"+cuenta+"SF.xml";
+           //alert(nfechajunto)
+           //alert(nuevafechae1)
+          
+
+           axios.post(ENDPOINT2 + '/api/notes/anulafactura', {
+            rucemisor: ruc,
+            fecha_de_emision:nuevafechae,
+            fecha_actual:res.data[0].fech,
+            razonemisor:razonemisor,
+            Nrodocu:nrodocu1,
+            archivosinfirma:narchivo,
+            porcentaje_de_igv:18,
+            items:[
+              {
+                "tipo":tipo,
+                "serie":nserie,
+                "numerobol":numero
+
+              }
+             
+            ]
+            
+            
+            
+    
+          })
+            .then(res =>{
+              console.log(res)
+              //unavez que se haya enviado y generado la anulacion procedoms a escribor el la tabla rebolanu
+              //realizar el api de grabacioin a la tabla resbolanu
+
+              axios.post(ENDPOINT1 + '/api/shoping1/resbolaumenta', {
+              //"Insert into Resu_Bolanu(numerores,Fecha_Emision,Fecha_Documento,Nro_Procesos,respuesta,estado,archivo) values($idgen,'$Fechagen',$fechafin,$item,$contenido,'1','$archivofin') ";
+                numerores:cuenta,                                 
+                fecha_Documento:nuevafechae,
+                fecha_Emision:nfecha,
+                Nro_Procesos:"1",
+                respuesta:res.data,
+                estado:res.data,
+                archivo:narchivo,
+                dvcid:DVC_ID                
+                
+        
+              })
+
+
+
+
+
+            }
+              
+              
+
+
+    
+            )
+            .catch(err =>
+              console.log(err)
+            )
+
+          
+
+
+
+          }
+           
+           
+
+           //console.log(res.data[0].fecha)
+
+        )
+        .catch(err =>
+          console.log(err)
+        )
+
+
+
+
+
+      }
+
+
+      
+    }
+
+
+
+      const comprueba =(ruc,tipo,serie,numero,numeroidr,fecha,importe)=>{
       let tidrecep="";
       let nserie="";
       
@@ -224,8 +345,15 @@ const ViewVentaserieHooks = () => {
 
       })
         .then(res =>
-          //return(true)
-          console.log(res.data)
+         {
+           //alert(res.data)
+          //return(res.data)
+          setisComp(res.data)
+
+         }
+          
+          //alert(res.data)
+          //console.log(res.data)
 
 
 
@@ -336,9 +464,24 @@ const ViewVentaserieHooks = () => {
           if (Object.keys(data).length > 0) {
             dashboardContent = (          
                     currentTodos.map(l1 => (
+                  
 
-                      <TableRow key={l1.codigo} className={classes.tableBodyRow}>
-                      
+                      <TableRow key={l1.codigo} className={classes.tableBodyRow}>   
+                       
+                             {l1.DVC_Anulado &&                        
+                                <TableCell className={classes.tableCell}>
+                                  <Button type="button"   color="danger" style={{padding:"4px 30px"}}  >Anulado</Button>   
+                                  </TableCell>        
+                             
+                              ||
+                                <TableCell className={classes.tableCell}>
+                                  <Button type="button"   color="success" style={{padding:"4px 30px"}}  >Activo</Button>   
+                                  </TableCell>        
+
+
+                               }
+                                
+                                
                                <TableCell className={classes.tableCell}>{l1.DVC_ID}</TableCell>        
                                <TableCell className={classes.tableCell}>{l1.DVC_Serie}</TableCell>        
                                <TableCell className={classes.tableCell}>{l1.DVC_Numero}</TableCell>                         
@@ -369,13 +512,19 @@ const ViewVentaserieHooks = () => {
                                    
                               </TableCell>
                                  <TableCell className={classes.tableCell}>
+                                 <Button type="button"   color="danger" style={{padding:"4px 30px"}}  onClick={() => {
+                                      anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID)     
+                                   
+                                    }}  >Anular</Button>   
 
                                  
                                  {
-                                 comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total)
+                                   //alert(comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total)),
+                                 comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total),
+                                 isComp
                                   &&
 
-                                      <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
+                                      <Button type="button"   color="info" style={{padding:"4px 30px"}}  onClick={() => {
                                         let inilet=(l1.TD_Descripcion).substring(0,1)
                                         //10444864589-03-B001-8.xml
 
@@ -399,13 +548,9 @@ const ViewVentaserieHooks = () => {
 
                               
                                 }
-                             
-                              
-
-                             
-                                 
 
                               </TableCell>  
+
 
                               <TableCell className={classes.tableCell}>{l1.DVC_Serie+"-"+l1.DVC_Numero}</TableCell>        
                               
@@ -468,6 +613,7 @@ const ViewVentaserieHooks = () => {
                                                               <Table className={classes.table} aria-label="customized table">    
                                                                         <TableHead >
                                                                             <TableRow className={classes.tableHeadRow}>
+                                                                                <TableCell className={classes.tableCell + " " + classes.tableHeadCell}>Estado</TableCell>
                                                                                 <TableCell className={classes.tableCell + " " + classes.tableHeadCell}>ID</TableCell>
                                                                                 <TableCell className={classes.tableCell + " " + classes.tableHeadCell}>Serie</TableCell>
                                                                                 <TableCell className={classes.tableCell + " " + classes.tableHeadCell}>Numero</TableCell>

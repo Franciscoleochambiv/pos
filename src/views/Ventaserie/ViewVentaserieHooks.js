@@ -102,6 +102,14 @@ import axios from 'axios';
         submit: {
           margin: theme.spacing(3, 0, 2),
         },
+        tableCell1:{
+          textDecorationLine: 'underline',
+          fontWeight: 'bold',
+          fontStyle: 'italic',
+          color: "red"
+
+        },
+        
        
       }));
       
@@ -199,7 +207,7 @@ const ViewVentaserieHooks = () => {
       let nserie=""
       let nuevafechae=fecha.split('/').reverse().join('-');
 
-      alert(nuevafechae)
+      //alert(nuevafechae)
       //let nuevafechae1=nuevafechae.split('-');
 
       //"Nrodocu":"RA-20211010-3",
@@ -448,6 +456,8 @@ const ViewVentaserieHooks = () => {
           const currentTodos = filteredContacts.slice(indexOfFirstTodo, indexOfLastTodo);
           let dashboardContent;          
           let edicion;
+
+
           if (filteredContacts === null ) {
             dashboardContent = (
               <TableRow >                       
@@ -471,29 +481,119 @@ const ViewVentaserieHooks = () => {
                              {l1.DVC_Anulado &&                        
                                 <TableCell className={classes.tableCell}>
                                   <Button type="button"   color="danger" style={{padding:"4px 30px"}}  >Anulado</Button>   
-                                  </TableCell>        
+                                  </TableCell>   
+                                       
                              
                               ||
                                 <TableCell className={classes.tableCell}>
                                   <Button type="button"   color="success" style={{padding:"4px 30px"}}  >Activo</Button>   
                                   </TableCell>        
 
-
                                }
-                                
-                                
-                               <TableCell className={classes.tableCell}>{l1.DVC_ID}</TableCell>        
-                               <TableCell className={classes.tableCell}>{l1.DVC_Serie}</TableCell>        
-                               <TableCell className={classes.tableCell}>{l1.DVC_Numero}</TableCell>                         
-                               <TableCell className={classes.tableCell}>{l1.TD_ID }</TableCell>        
-                               
-                               <TableCell className={classes.tableCell}>{l1.TD_Descripcion}</TableCell> 
-                               <TableCell className={classes.tableCell}>{l1.fecha}</TableCell> 
-                               <TableCell className={classes.tableCell}>{l1.PVCL_RazonSocial}</TableCell> 
-                               <TableCell className={classes.tableCell}>{l1.PVCL_NroDocIdentidad}</TableCell> 
-                               <TableCell className={classes.tableCell}>{l1.DVC_Total}</TableCell> 
 
-                               <TableCell className={classes.tableCell}>{l1.PVCL_Direccion}</TableCell> 
+
+                                
+                                {l1.DVC_Anulado &&      
+                                  <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.DVC_ID}</TableCell>        
+                               ||
+                                  <TableCell  className={classes.tableCell}>{l1.DVC_ID}</TableCell>        
+
+                                }
+
+                               {l1.DVC_Anulado &&      
+                                  <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.DVC_Serie}</TableCell>        
+
+                               ||
+                                  <TableCell className={classes.tableCell}>{l1.DVC_Serie}</TableCell>         
+                               
+                               }
+
+                              {l1.DVC_Anulado &&      
+                                 <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.DVC_Serie}</TableCell>                                    
+                               ||
+                                 <TableCell className={classes.tableCell}>{l1.DVC_Serie}</TableCell>                                      
+                               }
+
+                              {l1.DVC_Anulado &&      
+                                 <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.DVC_Numero}</TableCell>                         
+
+                                ||
+                                <TableCell className={classes.tableCell}>{l1.DVC_Numero}</TableCell>                         
+                           
+                               }
+
+                              {l1.DVC_Anulado &&      
+                               <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.TD_ID }</TableCell>         
+
+                               ||
+                               <TableCell className={classes.tableCell}>{l1.TD_ID }</TableCell>        
+                            
+                               }
+                                {l1.DVC_Anulado &&      
+                                 <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.TD_Descripcion}</TableCell> 
+
+                                ||
+                                <TableCell className={classes.tableCell}>{l1.TD_Descripcion}</TableCell> 
+                           
+                               }
+
+                              {l1.DVC_Anulado &&      
+                                 <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.fecha}</TableCell> 
+
+                               ||
+                                 <TableCell className={classes.tableCell}>{l1.fecha}</TableCell> 
+                           
+                               }
+
+                              {l1.DVC_Anulado &&      
+                                <TableCell  style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.PVCL_RazonSocial}</TableCell> 
+                            
+
+                              ||
+                                <TableCell className={classes.tableCell}>{l1.PVCL_RazonSocial}</TableCell> 
+                           
+                               }
+
+                              {l1.DVC_Anulado &&      
+                                <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.PVCL_NroDocIdentidad}</TableCell> 
+                            
+
+                               ||
+                               <TableCell className={classes.tableCell}>{l1.PVCL_NroDocIdentidad}</TableCell> 
+                           
+                              }
+
+                             {l1.DVC_Anulado &&      
+                               <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }}  className={classes.tableCell}>{l1.DVC_Total}</TableCell> 
+                            
+
+                              ||
+                              <TableCell className={classes.tableCell}>{l1.DVC_Total}</TableCell> 
+                           
+                             }
+
+                            {l1.DVC_Anulado &&      
+                             <TableCell  style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.PVCL_Direccion}</TableCell> 
+                            
+
+                             ||
+                             <TableCell className={classes.tableCell}>{l1.PVCL_Direccion}</TableCell> 
+                           
+                             }
+
+
+
+  
+                               
+                               
+                               
+                               
+                               
+                              
+
+                               
+
+                               
                                <TableCell className={classes.tableCell}>
                                   <Button type="button"   color="danger" style={{padding:"4px 30px"}}  onClick={() => {
                                    let inilet=(l1.TD_Descripcion).substring(0,1)
@@ -511,45 +611,98 @@ const ViewVentaserieHooks = () => {
                                     
                                    
                               </TableCell>
-                                 <TableCell className={classes.tableCell}>
-                                 <Button type="button"   color="danger" style={{padding:"4px 30px"}}  onClick={() => {
-                                      anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID)     
-                                   
-                                    }}  >Anular</Button>   
 
-                                 
-                                 {
-                                   //alert(comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total)),
-                                 comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total),
-                                 isComp
-                                  &&
 
-                                      <Button type="button"   color="info" style={{padding:"4px 30px"}}  onClick={() => {
-                                        let inilet=(l1.TD_Descripcion).substring(0,1)
-                                        //10444864589-03-B001-8.xml
-
-                                      }}  >Comprobado</Button>                                   
-
-                                 ||
-                                  <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
-                                  let inilet=(l1.TD_Descripcion).substring(0,1)
-                                  //10444864589-03-B001-8.xml
+                              {l1.DVC_Anulado &&   
+                                <TableCell className={classes.tableCell}>
+                                <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
+                                     //anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID)     
+                                     alert("Documento ya se esta Anulado")
+                                  
+                                   }}  >Anular</Button>   
 
                                 
+                                {
+                                  //alert(comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total)),
+                                comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total),
+                                isComp
+                                 &&
 
-                                  reenvio(RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".zip")
-                                   
+                                     <Button type="button"   color="info" style={{padding:"4px 30px"}}  onClick={() => {
+                                       let inilet=(l1.TD_Descripcion).substring(0,1)
+                                       //10444864589-03-B001-8.xml
+
+                                     }}  >Comprobado</Button>                                   
+
+                                ||
+                                 <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
+                                 let inilet=(l1.TD_Descripcion).substring(0,1)
+                                 //10444864589-03-B001-8.xml
+
+                               
+
+                                 reenvio(RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".zip")
+                                  
 
 
 
 
-                                 }}  >Reenvio</Button>                                   
+                                }}  >Reenvio</Button>                                   
 
 
-                              
-                                }
+                             
+                               }
 
-                              </TableCell>  
+                             </TableCell>  
+                     
+                               
+
+
+
+                                ||
+                                <TableCell className={classes.tableCell}>
+                                <Button type="button"   color="danger" style={{padding:"4px 30px"}}  onClick={() => {
+                                     anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID)     
+                                  
+                                   }}  >Anular</Button>   
+
+                                
+                                {
+                                  //alert(comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total)),
+                                comprueba(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.PVCL_NroDocIdentidad,l1.fecha,l1.DVC_Total),
+                                isComp
+                                 &&
+
+                                     <Button type="button"   color="info" style={{padding:"4px 30px"}}  onClick={() => {
+                                       let inilet=(l1.TD_Descripcion).substring(0,1)
+                                       //10444864589-03-B001-8.xml
+
+                                     }}  >Comprobado</Button>                                   
+
+                                ||
+                                 <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
+                                 let inilet=(l1.TD_Descripcion).substring(0,1)
+                                 //10444864589-03-B001-8.xml
+
+                               
+
+                                 reenvio(RucEmpresa+"-0"+l1.TD_ID+"-"+inilet+serie+"-"+l1.DVC_Numero+".zip")
+                                  
+
+
+
+
+                                }}  >Reenvio</Button>                                   
+
+
+                             
+                               }
+
+                             </TableCell>  
+
+                              }
+
+                                 
 
 
                               <TableCell className={classes.tableCell}>{l1.DVC_Serie+"-"+l1.DVC_Numero}</TableCell>        

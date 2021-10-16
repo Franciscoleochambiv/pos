@@ -274,12 +274,15 @@ const ViewVentaserieHooks = () => {
         
               })
 
+              alert("La Boleta ha sido Anulada Vefiquela en la opcion validacion CPE SUNAT")
+
               
             }
               
             )
             .catch(err =>
-              console.log(err)
+              console.log(err),
+              alert(err)
             )
 
           }
@@ -350,6 +353,7 @@ const ViewVentaserieHooks = () => {
                 
         
               })
+              alert("La Factura ha sido Anulada Vefiquela en la opcion validacion CPE SUNAT")
 
 
 
@@ -363,7 +367,8 @@ const ViewVentaserieHooks = () => {
     
             )
             .catch(err =>
-              console.log(err)
+              console.log(err),
+              alert(err)
             )
 
           
@@ -387,7 +392,7 @@ const ViewVentaserieHooks = () => {
 
       }
 
-      dispatch(fetch_ventaseriesql(loggedInName.serie))
+      //dispatch(fetch_ventaseriesql(loggedInName.serie))
 
 
       

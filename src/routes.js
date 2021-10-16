@@ -53,6 +53,7 @@ import ProductList from "./views/ProductList/ProductList"
 import Venta from "./views/Venta/Venta";
 
 import ViewVentaserieHooks  from  "./views/Ventaserie/ViewVentaserieHooks"
+import ViewValidaHooks from  "./views/Ventaserie/ViewValidaHooks"
 import ViewVentaserieHookstot  from  "./views/Ventaserie/ViewVentaserieHookstot"
 import PosHooks from  "./views/Pos/PosHooks"
 
@@ -99,6 +100,14 @@ const dashboardRoutes = [
     rtlName: "ملف تعريفي للمستخدم",
     icon: Person,
     component: ViewVentaserieHookstot,
+    layout: "/admin"
+  },
+  {
+    path: "/validoc",
+    name: "Validacion CPE SUNAT",
+    rtlName: "ملف تعريفي للمستخدم",
+    icon: Person,
+    component: ViewValidaHooks,
     layout: "/admin"
   }
 

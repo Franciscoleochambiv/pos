@@ -202,7 +202,8 @@ const ViewVentaserieHooks = () => {
 
     }
 
-    const anula=(ruc,tipo,serie,numero,fecha,total,razonemisor,DVC_ID)=>{
+    const anula=(ruc,tipo,serie,numero,fecha,total,razonemisor,DVC_ID,DVC_Subtotal,DVC_Impuesto)=>{
+      //anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID,l1.DVC_Subtotal,DVC_Impuesto)     
       //alert(tipo)
       let nserie=""
       let nuevafechae=fecha.split('/').reverse().join('-');
@@ -216,7 +217,79 @@ const ViewVentaserieHooks = () => {
 
       if (tipo==="03"){        
         nserie="B"+zfill(serie,3);   
-        alert("Procedimiento en Contruccion")     
+        //alert("Procedimiento en Contruccion")   
+        axios.get(ENDPOINT1 + '/api/shoping1/resbol')
+        .then(res =>
+          {
+           let cuenta=res.data[0].id+1;
+           
+           let nfecha=res.data[0].fech;
+           let nfechajunto=nfecha.replace(/-/g,"")
+           let nrodocu1="RC-"+nfechajunto+"-"+cuenta;
+           let narchivo=ruc+"-RC-"+nfechajunto+"-"+cuenta+"SF.xml";
+           //alert(nfechajunto)
+           //alert(nuevafechae1)
+          
+
+           axios.post(ENDPOINT2 + '/api/notes/anulaboleta', {
+            rucemisor:RucEmpresa,
+            total:total,
+            impuesto:DVC_Subtotal,
+            subtotal:DVC_Impuesto,
+            fecha_de_emision:nuevafechae,
+            fecha_actual:res.data[0].fech,
+            razonemisor:NameEmpresa,
+            Nrodocu:nrodocu1,
+            archivosinfirma:narchivo,
+            porcentaje_de_igv:18,
+            items:[
+              {
+                "tipo":tipo,
+                "serie":nserie,
+                "numerobol":numero,
+                "subtotal":DVC_Subtotal,
+                "impuesto":DVC_Impuesto,
+                "total":total,
+
+              }
+             
+            ]
+          })
+            .then(res =>{
+              console.log(res)
+              //unavez que se haya enviado y generado la anulacion procedoms a escribor el la tabla rebolanu
+              //realizar el api de grabacioin a la tabla resbolanu
+
+              axios.post(ENDPOINT1 + '/api/shoping1/resbolaumenta1', {
+              //"Insert into Resu_Bolanu(numerores,Fecha_Emision,Fecha_Documento,Nro_Procesos,respuesta,estado,archivo) values($idgen,'$Fechagen',$fechafin,$item,$contenido,'1','$archivofin') ";
+                numerores:cuenta,                                 
+                fecha_Documento:nuevafechae,
+                fecha_Emision:nfecha,
+                Nro_Procesos:"1",
+                respuesta:res.data,
+                estado:res.data,
+                archivo:narchivo,
+                dvcid:DVC_ID                
+                
+        
+              })
+
+              
+            }
+              
+            )
+            .catch(err =>
+              console.log(err)
+            )
+
+          }
+           
+           //console.log(res.data[0].fecha)
+
+        )
+        .catch(err =>
+          console.log(err)
+        )
 
       }
 
@@ -238,10 +311,10 @@ const ViewVentaserieHooks = () => {
           
 
            axios.post(ENDPOINT2 + '/api/notes/anulafactura', {
-            rucemisor: ruc,
+            rucemisor: RucEmpresa,
             fecha_de_emision:nuevafechae,
             fecha_actual:res.data[0].fech,
-            razonemisor:razonemisor,
+            razonemisor:NameEmpresa,
             Nrodocu:nrodocu1,
             archivosinfirma:narchivo,
             porcentaje_de_igv:18,
@@ -508,11 +581,7 @@ const ViewVentaserieHooks = () => {
                                
                                }
 
-                              {l1.DVC_Anulado &&      
-                                 <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.DVC_Serie}</TableCell>                                    
-                               ||
-                                 <TableCell className={classes.tableCell}>{l1.DVC_Serie}</TableCell>                                      
-                               }
+                              
 
                               {l1.DVC_Anulado &&      
                                  <TableCell style={{color:'red',fontStyle: 'italic',textDecorationLine: 'line-through' }} className={classes.tableCell}>{l1.DVC_Numero}</TableCell>                         
@@ -617,7 +686,7 @@ const ViewVentaserieHooks = () => {
                                 <TableCell className={classes.tableCell}>
                                 <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
                                      //anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID)     
-                                     alert("Documento ya se esta Anulado")
+                                     alert("Documento ya  esta Anulado")
                                   
                                    }}  >Anular</Button>   
 
@@ -662,7 +731,7 @@ const ViewVentaserieHooks = () => {
                                 ||
                                 <TableCell className={classes.tableCell}>
                                 <Button type="button"   color="danger" style={{padding:"4px 30px"}}  onClick={() => {
-                                     anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID)     
+                                     anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID,l1.DVC_Subtotal,l1.DVC_Impuesto)     
                                   
                                    }}  >Anular</Button>   
 

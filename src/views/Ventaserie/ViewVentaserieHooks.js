@@ -387,6 +387,8 @@ const ViewVentaserieHooks = () => {
 
       }
 
+      dispatch(fetch_ventaseriesql(loggedInName.serie))
+
 
       
     }

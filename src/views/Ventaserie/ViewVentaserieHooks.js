@@ -282,7 +282,7 @@ const ViewVentaserieHooks = () => {
             )
             .catch(err =>
               console.log(err),
-              alert(err)
+              alert("Hubo Un problema en la anulacion intentelo mas tarde")
             )
 
           }
@@ -368,7 +368,8 @@ const ViewVentaserieHooks = () => {
             )
             .catch(err =>
               console.log(err),
-              alert(err)
+              alert("Hubo Un problema en la anulacion intentelo mas tarde")
+              
             )
 
           

@@ -70,6 +70,9 @@ import Redidigir from "./Redirigir";
 import Salir from "./Salir"
 
 import PDF from "./pdf";
+
+import CDP from "./validacomp";
+
 import Archivos from "./archivos";
 import Archivos1 from "./archivos1";
 import PosHooks from "./views/Pos/PosHooks";
@@ -171,6 +174,9 @@ const App = () =>{
 
 
                                       <Route path='/pdf/:id' component={PDF} />
+
+                                      <Route path='/vcompro/:id' component={CDP} />
+
                                       <Route path='/archivos/:id' component={Archivos} />
                                       <Route path='/archivos1/:id' component={Archivos1} />
 

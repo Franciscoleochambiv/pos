@@ -34,6 +34,7 @@ import { fetch_ventaseriesql } from "../../actions/ventaserieActions";
 import {NumerosaLetras,zfill,mathRound2} from "../../funciones1";
 import { unidad,RucEmpresa,ENDPOINT1,ENDPOINT2,NameEmpresa,Nproveedor,Nprovincia,Nciudad,Ndistrito,Ndireccion} from "../../variables";
 import axios from 'axios';
+import { Divider } from '@material-ui/core';
 
 
     const useStyles = makeStyles((theme) => ({
@@ -144,17 +145,10 @@ const ViewValidaHooks = () => {
   let  history = useHistory();
 
     
-
-    //let unidad="https://adryan2.sytes.net:7001";
-
-
     const dispatch = useDispatch()
     const data = useSelector (store => store.ventaserie.ventaseriefiles) 
     const loggedInName = useSelector (store => store.auth.user)     
 
-
-
-    
 
     
     const [search, setsearch] = useState("")
@@ -181,6 +175,7 @@ const ViewValidaHooks = () => {
 
     const comprueba2 =(RucEmpresa,data)=>{
       console.log(data)
+      setisOpen(true)
       axios.post(ENDPOINT2 + '/api/notes/comprueba2', {
         rucEmisor:RucEmpresa,
         data:data
@@ -188,7 +183,12 @@ const ViewValidaHooks = () => {
       .then(res =>
       {
         //alert(res.data)
-        alert("Archivo Generado con Exito")
+
+        //alert("Archivo Generado con Exito")
+        setisOpen(false)
+        //history.push("/pdf/" + RucEmpresa+"-0" + tipo + "-" + inilet + serie + "-" + unumero + ".pdf"),
+        history.push("/vcompro/valida.xls")
+
         //return(res.data)
         //setisComp(res.data)
 
@@ -199,164 +199,22 @@ const ViewValidaHooks = () => {
       )
     }
 
-        
-
-      const comprueba =(ruc,tipo,serie,numero,numeroidr,fecha,importe)=>{
-      let tidrecep="";
-      let nserie="";
-      
-
-      if (tipo==="03"){
-        tidrecep="0";
-        nserie="B"+zfill(serie,3);
-
-      }
-
-      else{
-        tidrecep="6";
-        nserie="F"+zfill(serie,3);
-        
-
-
-      }
-    //  alert(archivotmp)
-
-          
-      axios.post(ENDPOINT2 + '/api/notes/comprueba2', {
-        rucEmisor:ruc,
-        tipoCDP:tipo,
-        serieCDP:nserie,
-        numeroCDP:numero,
-        tipoDocIdReceptor:tidrecep,
-        numeroDocIdReceptor:numeroidr,
-        fechaEmision:fecha,
-        importeTotal:mathRound2(importe,2),                    
-
-      })
-        .then(res =>
-         {
-           //alert(res.data)
-          //return(res.data)
-          setisComp(res.data)
-
-         }
-          
-          //alert(res.data)
-          //console.log(res.data)
-
-
-
-        )
-        .catch(err =>
-          console.log(err)
-        )
-
-    }
-
-
-
-
-  
-
-
-
-    
-        
-        const indexOfLastTodo = currentPage * todosPerPage;
-        const indexOfFirstTodo = indexOfLastTodo - todosPerPage;
-
-        const pageNumbers = [];
-        for (let i = 1; i <= Math.ceil(data.length / todosPerPage); i++) {
-          pageNumbers.push(i);
-        }
-
-        let filteredContacts = data.filter(
-            (task) =>{
-                let poetName = task.Nserie+task.PVCL_RazonSocial.toUpperCase()+task.PVCL_NroDocIdentidad;
-                let separador=" "; 
-                let i;
-                let poetName1=search.split(separador);
-                let tpalabras=poetName1.length;    
-                let datopa;  
-                if (tpalabras>3){
-                    return  poetName.indexOf(search) !== -1;    
-
-                  }
-                else{
-
-                      for (i=0;i<tpalabras;i++) {                       
-                          datopa=poetName1[i];                         
-                          return poetName.indexOf(datopa) !== -1 ;                       
-                        }
-                        return poetName;
-                      }
-                } //FIN EDL FUNCION MAP
-            
-          );
-
-        
-         
-
-          const currentTodos = filteredContacts.slice(indexOfFirstTodo, indexOfLastTodo);
-          let data2={};
-         
+     
 
           let dashboardContent;          
-          let edicion;
+       
+
+          dashboardContent = (
+           
+                  <Spinner/>
+              
+              );
 
 
-          if (filteredContacts === null ) {
-            dashboardContent = (
-              <TableRow >                       
-                <TableCell >
-                    <Spinner/>
-                </TableCell>  
-              </TableRow >
-                
-                );
-                       
-          } 
 
          
-          if (Object.keys(data).length > 0) {
-            dashboardContent = (          
-                    currentTodos.map(l1 => (
-                  
-
-                      <TableRow key={l1.codigo} className={classes.tableBodyRow}>   
-                                                                                     
-                                <TableCell className={classes.tableCell}>{l1.fecha}</TableCell>    
-                                <TableCell className={classes.tableCell}>{l1.DVC_Serie+"-"+l1.DVC_Numero}</TableCell>                                                      
-                                <TableCell className={classes.tableCell}>{l1.TD_ID }</TableCell>        
-                                <TableCell className={classes.tableCell}>{l1.TD_Descripcion}</TableCell> 
-                                <TableCell className={classes.tableCell}>{l1.PVCL_NroDocIdentidad}</TableCell>                                 
-                                <TableCell className={classes.tableCell}>{l1.PVCL_RazonSocial}</TableCell>                                
-                                <TableCell className={classes.tableCell}>{l1.DVC_Total}</TableCell> 
-                                <TableCell className={classes.tableCell}>
-    
-
-                                                   
-
-                                 </TableCell> 
-                                
-                      
-                    </TableRow>    
-
-
-                            ))     
-                            );        
-        }
-        else{
-          dashboardContent = (   
-            <TableRow >                       
-                <TableCell >
-                    <Spinner/>
-                </TableCell>  
-              </TableRow >  
-
-                  
-            );         
-          } 
+         
+        
     
         return (
 
@@ -369,11 +227,18 @@ const ViewValidaHooks = () => {
                                             <CardBody>
                                               <GridContainer>
                                                   <GridItem xs={12} sm={6} md={6}>  
-                                                  <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {
-                                     //anula(RucEmpresa,"0"+l1.TD_ID,l1.DVC_Serie,l1.DVC_Numero,l1.fecha,l1.DVC_Total,l1.PVCL_RazonSocial,l1.DVC_ID)     
+                                                  <Button type="button"   color="success" style={{padding:"4px 30px"}}  onClick={() => {                                     
                                                             comprueba2(RucEmpresa,data)
                                      
                                                                }}  >Generar Archivo de Validacion de Comprobantes </Button>   
+
+                                                      {isOpen &&
+                                                        dashboardContent
+                                                      
+                                                      ||
+                                                       
+                                                      <h4 ></h4>
+                                                      }         
 
 
                                                         

@@ -275,14 +275,14 @@ const ViewVentaserieHooks = () => {
               })
 
               alert("La Boleta ha sido Anulada Vefiquela en la opcion validacion CPE SUNAT")
+              history.push("/pos/pos")
 
               
             }
               
             )
             .catch(err =>
-              console.log(err),
-              alert("Hubo Un problema en la anulacion intentelo mas tarde")
+              console.log(err)
             )
 
           }
@@ -354,6 +354,7 @@ const ViewVentaserieHooks = () => {
         
               })
               alert("La Factura ha sido Anulada Vefiquela en la opcion validacion CPE SUNAT")
+              history.push("/pos/pos")
 
 
 
@@ -367,8 +368,8 @@ const ViewVentaserieHooks = () => {
     
             )
             .catch(err =>
-              console.log(err),
-              alert("Hubo Un problema en la anulacion intentelo mas tarde")
+              console.log(err)
+              
               
             )
 
